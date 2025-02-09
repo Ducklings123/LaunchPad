@@ -14,6 +14,15 @@
         h1 {
             margin-top: 20px;
         }
+        #search {
+            padding: 10px;
+            width: 60%;
+            margin: 20px auto;
+            display: block;
+            border-radius: 5px;
+            border: none;
+            font-size: 16px;
+        }
         .game-list {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -25,21 +34,39 @@
             padding: 15px;
             background: #333;
             border-radius: 10px;
+            transition: 0.3s;
+            cursor: pointer;
+        }
+        .game:hover {
+            background: #444;
+            transform: scale(1.1);
         }
         a {
             color: #00ffcc;
             text-decoration: none;
+            font-size: 18px;
         }
     </style>
 </head>
 <body>
     <h1>Unblocked Games</h1>
-    <p>Click on a game to start playing!</p>
-    <div class="game-list">
+    <input type="text" id="search" placeholder="Search for a game..." onkeyup="filterGames()">
+    <div class="game-list" id="gameList">
         <div class="game"><a href="NYshark.html" target="_blank">New York Shark</a></div>
         <div class="game"><a href="Pacman.html" target="_blank">Pac-Man</a></div>
         <div class="game"><a href="Tetris.html" target="_blank">Tetris</a></div>
         <div class="game"><a href="Mario.html" target="_blank">Mario</a></div>
     </div>
+
+    <script>
+        function filterGames() {
+            let input = document.getElementById("search").value.toLowerCase();
+            let games = document.getElementsByClassName("game");
+            for (let game of games) {
+                let gameText = game.innerText.toLowerCase();
+                game.style.display = gameText.includes(input) ? "block" : "none";
+            }
+        }
+    </script>
 </body>
 </html>
